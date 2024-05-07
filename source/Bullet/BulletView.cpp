@@ -35,7 +35,7 @@ namespace Bullet
 
 	void BulletView::update()
 	{
-		//bullet_image->setPosition(player_controller->getPlayerPosition());
+		//bullet_image->setPosition(bullet_controller->getBulletPosition());
 		bullet_image->update();
 	}
 

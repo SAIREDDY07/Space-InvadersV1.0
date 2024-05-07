@@ -7,7 +7,7 @@ namespace Bullet
 {
 	using namespace Global;
 	using namespace Collision;
-
+	
 	
 	BulletService::BulletService()
 	{
@@ -35,6 +35,9 @@ namespace Bullet
 	void BulletService::render()
 	{
 		bullet_controller->render();
+	}
+	BulletController* BulletService::getBulletController() {
+		return bullet_controller;
 	}
 
 	/*void PlayerService::increaseScore(int val)

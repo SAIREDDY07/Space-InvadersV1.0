@@ -5,8 +5,8 @@
 
 namespace Bullet {
 
-    BulletModel::BulletModel(const sf::Sprite& bulletSprite, const sf::Vector2f& initialVelocity)
-        : sprite(bulletSprite), velocity(initialVelocity), active(true) {}
+    BulletModel::BulletModel(const sf::Vector2f& initialVelocity)
+        : velocity(initialVelocity), active(true) {}
 
     void BulletModel::update(float deltaTime) {
         if (active) {
@@ -33,7 +33,9 @@ namespace Bullet {
     sf::Vector2f BulletModel::getPosition() const {
         return bullet_position;
     }
-
+    sf::Vector2f BulletModel::getBulletVelocity() {
+        return velocity;
+    }
     // Setter for bullet position
     void BulletModel::setPosition(const sf::Vector2f& position) {
         bullet_position = position;

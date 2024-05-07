@@ -4,11 +4,13 @@
 #include "../../header/Powerup/PowerupConfig.h"
 #include "../../header/Player/PlayerModel.h"
 #include "../../header/Player/PlayerView.h"
+#include "../../header/Bullet/BulletController.h"
 
 namespace Player
 {
     class PlayerView;
     class PlayerModel;
+    class BulletController;
     class PlayerController : public Collision::ICollider
     {
     private:
@@ -25,6 +27,7 @@ namespace Player
         void processPlayerInput();
         void moveLeft();
         void moveRight();
+        void processBulletFire();
 
         bool processPowerupCollision(ICollider* other_collider);
         bool processEnemyCollision(ICollider* other_collider);

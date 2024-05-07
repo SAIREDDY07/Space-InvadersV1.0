@@ -12,7 +12,9 @@ namespace Bullet {
 
     public:
         // Constructor
-        BulletModel(const sf::Sprite& bulletSprite, const sf::Vector2f& initialVelocity);
+        //BulletModel(const sf::Sprite& bulletSprite, const sf::Vector2f& initialVelocity);
+
+        BulletModel(const sf::Vector2f& initialVelocity);
 
         // Method to update the bullet's position based on velocity and delta time
         void update(float deltaTime);
@@ -31,5 +33,7 @@ namespace Bullet {
 
         // Setter for bullet position
         void setPosition(const sf::Vector2f& position);
+
+        sf::Vector2f getBulletVelocity();
     };
 }

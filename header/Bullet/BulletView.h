@@ -13,7 +13,7 @@ namespace Bullet {
 		const sf::String bullet_texture_path = "assets/textures/laser_bullet.png";
 
 		const float bullet_sprite_width = 30.f;
-		const float bullet_sprite_height = 60.f;
+		const float bullet_sprite_height = 30.f;
 
 		BulletController* bullet_controller;
 

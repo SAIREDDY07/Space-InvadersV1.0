@@ -1,5 +1,6 @@
 #pragma once
 
+
 namespace Bullet
 {
 	class BulletController;
@@ -13,6 +14,7 @@ namespace Bullet
 		BulletService();
 		virtual ~BulletService();
 
+		BulletController* getBulletController();
 		void initialize();
 		void update();
 		void render();

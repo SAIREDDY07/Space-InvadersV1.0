@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -70,6 +70,9 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -105,6 +108,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)sfml\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -133,8 +137,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="header\Bullet\BulletController.h" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="source\Bullet\BulletController.cpp" />
+    <ClCompile Include="source\Bullet\BulletModel.cpp" />
+    <ClCompile Include="source\Bullet\BulletService.cpp" />
+    <ClCompile Include="source\Bullet\BulletView.cpp" />
     <ClCompile Include="source\Collision\CollisionService.cpp" />
     <ClCompile Include="source\Collision\ICollider.cpp" />
     <ClCompile Include="source\Elements\Bunker\BunkerController.cpp" />
@@ -188,6 +195,7 @@
     <ClCompile Include="source\UI\SplashScreen\SplashScreenUIController.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="header\Bullet\BulletController.h" />
     <ClInclude Include="header\Bullet\BulletModel.h" />
     <ClInclude Include="header\Bullet\BulletService.h" />
     <ClInclude Include="header\Bullet\BulletView.h" />
@@ -249,10 +257,6 @@
     <ClInclude Include="header\UI\UIElement\UIView.h" />
     <ClInclude Include="header\UI\UIService.h" />
     <ClInclude Include="header\UI\SplashScreen\SplashScreenUIController.h" />
-    <ClInclude Include="source\Bullet\BulletController.cpp" />
-    <ClInclude Include="source\Bullet\BulletModel.cpp" />
-    <ClInclude Include="source\Bullet\BulletService.cpp" />
-    <ClInclude Include="source\Bullet\BulletView.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
