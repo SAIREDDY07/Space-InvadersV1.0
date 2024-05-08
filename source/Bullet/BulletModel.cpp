@@ -10,8 +10,9 @@ namespace Bullet {
 
     void BulletModel::update(float deltaTime) {
         if (active) {
-            sprite.move(velocity * deltaTime);
+            bullet_position +=velocity * deltaTime;
         }
+
     }
 
     // Method to deactivate the bullet

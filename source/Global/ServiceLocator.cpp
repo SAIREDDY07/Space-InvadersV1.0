@@ -53,6 +53,7 @@ namespace Global
 		ui_service = new UIService();
 		sound_service = new SoundService();
 		bullet_service = new BulletService();
+		
 	}
 
 	void ServiceLocator::initialize()

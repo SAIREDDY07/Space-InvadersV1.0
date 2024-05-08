@@ -6,14 +6,14 @@ int main()
     using namespace Main;
 
     GameService* game_service = new GameService();
-    
+    //std::cout << "rendering_ignite" << std::endl;
     game_service->ignite();
-    std::cout << "rendering_ignite" << std::endl;
+    
     while (game_service->isRunning())
     {
         game_service->update();
         game_service->render();
-        std::cout << "rendering" <<std::endl;
+      //  std::cout << "rendering" <<std::endl;
     }
 
     return 0;

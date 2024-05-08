@@ -10,7 +10,7 @@ namespace Player
 {
     class PlayerView;
     class PlayerModel;
-    class BulletController;
+   // class BulletController;
     class PlayerController : public Collision::ICollider
     {
     private:

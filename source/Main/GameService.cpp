@@ -2,6 +2,7 @@
 #include "../../header/Graphics/GraphicService.h"
 #include "../../header/Event/EventService.h"
 #include "../../header/UI/UIService.h"
+
 #include <iostream>
 namespace Main
 {
@@ -18,9 +19,8 @@ namespace Main
 
 	void GameService::ignite()
 	{
-		
-		service_locator = ServiceLocator::getInstance();
 		std::cout << "Service_locator" << std::endl;
+		service_locator = ServiceLocator::getInstance();
 		std::cout << "Service_locator" << std::endl;
 		initialize();
 	}

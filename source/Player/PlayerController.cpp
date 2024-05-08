@@ -38,6 +38,7 @@ namespace Player
 	{
 		player_model->initialize();
 		player_view->initialize(this);
+
 	}
 
 	void PlayerController::update()
@@ -232,7 +233,7 @@ namespace Player
 		sf::Vector2f bulletSpawnPosition = playerPosition + player_model->barrel_position_offset;
 
 		// Determine the bullet's initial velocity (upwards)
-		sf::Vector2f bulletVelocity(0.f, -1.f);
+		sf::Vector2f bulletVelocity(0.f, -200.f);
 
 		
 		// Create the bullet using BulletController

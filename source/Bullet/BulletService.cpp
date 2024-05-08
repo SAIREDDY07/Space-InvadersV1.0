@@ -16,7 +16,7 @@ namespace Bullet
 
 	BulletService::~BulletService()
 	{
-		//ServiceLocator::getInstance()->getCollisionService()->removeCollider(dynamic_cast<ICollider*>(bullet_controller));
+		ServiceLocator::getInstance()->getCollisionService()->removeCollider(dynamic_cast<ICollider*>(bullet_controller));
 		delete (bullet_controller);
 	}
 
@@ -24,7 +24,7 @@ namespace Bullet
 	{
 
 		bullet_controller->initialize();
-		//ServiceLocator::getInstance()->getCollisionService()->addCollider(dynamic_cast<ICollider*>(bullet_controller));
+		ServiceLocator::getInstance()->getCollisionService()->addCollider(dynamic_cast<ICollider*>(bullet_controller));
 	}
 
 	void BulletService::update()

@@ -92,7 +92,8 @@ namespace Enemy
 	void EnemyController::onCollision(ICollider* other_collider)
 	{
 		PlayerController* player_controller = dynamic_cast<PlayerController*>(other_collider);
-		if (player_controller)
+		Bullet::BulletController* bullet_controller = dynamic_cast<Bullet::BulletController*>(other_collider);
+		if (player_controller ||bullet_controller)
 		{
 			processScore();
 			destroy();
