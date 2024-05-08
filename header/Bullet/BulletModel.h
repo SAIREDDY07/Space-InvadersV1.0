@@ -14,26 +14,15 @@ namespace Bullet {
         // Constructor
         //BulletModel(const sf::Sprite& bulletSprite, const sf::Vector2f& initialVelocity);
 
-        BulletModel(const sf::Vector2f& initialVelocity);
+        BulletModel(const sf:: Vector2f& bulletposition,const sf::Vector2f& initialVelocity);
 
-        // Method to update the bullet's position based on velocity and delta time
+        
         void update(float deltaTime);
-
-        // Method to deactivate the bullet
         void deactivate();
-
-        // Getter for active status
-        bool isActive() const;
-
-        // Getter for bullet sprite
+        bool isActive() const;        
         const sf::Sprite& getSprite() const;
-
-        // Getter for bullet position
         sf::Vector2f getPosition() const;
-
-        // Setter for bullet position
         void setPosition(const sf::Vector2f& position);
-
         sf::Vector2f getBulletVelocity();
     };
 }

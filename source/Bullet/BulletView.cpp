@@ -28,20 +28,20 @@ namespace Bullet
 
 	void BulletView::initializeImage()
 	{
-		bullet_image->initialize(Config::bullet_texture_path, bullet_sprite_width, bullet_sprite_height, bullet_controller->getSpawnPosition());
+		bullet_image->initialize(Config::bullet_texture_path, bullet_sprite_width, bullet_sprite_height, bullet_controller->getBulletPosition());
 	}
 
 
 
 	void BulletView::update()
 	{
-		//bullet_image->setPosition(bullet_controller->getBulletPosition());
+		bullet_image->setPosition(bullet_controller->getBulletPosition());
 		bullet_image->update();
 	}
 
-	void BulletView::render(const BulletModel& bullet)
+	void BulletView::render()
 	{
-		bullet_image->setPosition(bullet.getPosition());
+		
 		bullet_image->render();
 	}
 

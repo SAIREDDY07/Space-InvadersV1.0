@@ -30,7 +30,7 @@ namespace Bullet {
 
 		void initialize(BulletController* controller);
 		void update();
-		void render(const BulletModel& bullet);
+		void render();
 
 		//void setBulletHighlight(bool b_highlight);
 		const sf::Sprite& getBulletSprite();

@@ -5,27 +5,24 @@
 
 namespace Bullet {
 
-    BulletModel::BulletModel(const sf::Vector2f& initialVelocity)
-        : velocity(initialVelocity), active(true) {}
+    BulletModel::BulletModel(const sf::Vector2f& bulletposition,const sf::Vector2f& initialVelocity)
+        : bullet_position(bulletposition),velocity(initialVelocity), active(true) {}
 
     void BulletModel::update(float deltaTime) {
         if (active) {
-            bullet_position +=velocity * deltaTime;
+            bullet_position += velocity * deltaTime;
         }
-
+        
     }
 
-    // Method to deactivate the bullet
     void BulletModel::deactivate() {
         active = false;
     }
 
-    // Getter for active status
     bool BulletModel::isActive() const {
         return active;
     }
 
-    // Getter for bullet sprite
     const sf::Sprite& BulletModel::getSprite() const {
         return sprite;
     }

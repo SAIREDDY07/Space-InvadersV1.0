@@ -21,10 +21,12 @@ namespace Bullet {
     using namespace Main;
     using namespace Gameplay;
 
-    BulletController::BulletController() {
+    
+
+    BulletController::BulletController(sf::Vector2f spawnPosition,sf::Vector2f intitialVelocity) {
 
         bulletView = new BulletView();
-        
+        bulletModel = new BulletModel(spawnPosition,intitialVelocity);
     }
 
     void BulletController::initialize() {
@@ -49,32 +51,24 @@ namespace Bullet {
     
 
     
-    void BulletController::createBullet(const sf::Vector2f& position, const sf::Vector2f& velocity) {
-        BulletModel newBullet(velocity);
-        newBullet.setPosition(position);
-        bullets.push_back(newBullet);
-    }
 
     void BulletController::update() {
         float deltaTime = timeService->getDeltaTime();
         
-        for (auto& bullet : bullets) {
-   
-            bullet.update(deltaTime);
-            if (isBulletOutOfBounds(bullet)) bullet.deactivate();
-        }
+        bulletModel->update(deltaTime);
+        if (isBulletOutOfBounds(bulletModel)) bulletModel->deactivate();
+        bulletView->update();
 
      
-        bullets.erase(std::remove_if(bullets.begin(), bullets.end(), [](BulletModel& bullet) {
-            return !bullet.isActive();
-            }), bullets.end());
+        //bullets.erase(std::remove_if(bullets.begin(), bullets.end(), [](BulletModel& bullet) {
+          //  return !bullet.isActive();
+            //}), bullets.end());
     }
 
     void BulletController::render() {
-        for (const auto& bullet : bullets) {
-
-            bulletView->render(bullet);
-        }
+       
+            bulletView->render();
+        
     }
 
     const sf::Sprite& BulletController::getColliderSprite()
@@ -84,7 +78,7 @@ namespace Bullet {
 
     void BulletController::onCollision(ICollider* other_collider)
     {
-               
+        //destroy();
     }
 
     void BulletController::setSpawnPosition(const sf::Vector2f position)
@@ -94,14 +88,25 @@ namespace Bullet {
     sf::Vector2f BulletController::getSpawnPosition() const {
         return spawn_position;
     }
+    sf::Vector2f BulletController::getBulletPosition()
+    {
+    
+        return bulletModel->getPosition();
+    }
 
-    bool BulletController::isBulletOutOfBounds(const BulletModel& bullet) {
+    bool BulletController::isBulletOutOfBounds(const BulletModel* bullet) {
 
         const float windowWidth = 1920;
         const float windowHeight = 1080;
-        const sf::Vector2f& position = bullet.getPosition();
+        const sf::Vector2f& position = bullet->getPosition();
 
         return (position.x < 0 || position.x > windowWidth || position.y < 0 || position.y > windowHeight);
+    }
+    bool BulletController::isBulletActive() {
+        return this->bulletModel->isActive();
+    }
+    void BulletController::destroy() {
+        ServiceLocator::getInstance()->getBulletService()->destroyBullet(this);
     }
     
 }

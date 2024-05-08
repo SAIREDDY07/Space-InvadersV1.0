@@ -11,64 +11,55 @@ namespace Bullet
 	
 	BulletService::BulletService()
 	{
-		bullet_controller = new BulletController();
+			
 	}
 
 	BulletService::~BulletService()
 	{
-		ServiceLocator::getInstance()->getCollisionService()->removeCollider(dynamic_cast<ICollider*>(bullet_controller));
-		delete (bullet_controller);
+		for (auto& bullet_controller : bullet_list) {
+			ServiceLocator::getInstance()->getCollisionService()->removeCollider(dynamic_cast<ICollider*>(bullet_controller));
+			delete (bullet_controller);
+		}
+		
+	}
+
+	void  BulletService::CreateBullet(const sf::Vector2f& position, const sf::Vector2f& velocity)
+	{
+		BulletController* new_bullet_controller = new BulletController(position,velocity);
+		new_bullet_controller->initialize();
+		ServiceLocator::getInstance()->getCollisionService()->addCollider(dynamic_cast<ICollider*>(new_bullet_controller));
+		bullet_list.push_back(new_bullet_controller);
+		
 	}
 
 	void BulletService::initialize()
 	{
 
-		bullet_controller->initialize();
-		ServiceLocator::getInstance()->getCollisionService()->addCollider(dynamic_cast<ICollider*>(bullet_controller));
 	}
 
 	void BulletService::update()
 	{
-		bullet_controller->update();
+		for (auto& bullet_controller : bullet_list) {
+			bullet_controller->update();
+		}
+		bullet_list.erase(std::remove_if(bullet_list.begin(), bullet_list.end(),
+			[](BulletController* bulletcontroller) {
+		  return !bulletcontroller->isBulletActive();
+			}), bullet_list.end());
+		
 	}
 
 	void BulletService::render()
 	{
-		bullet_controller->render();
+		for (auto& bullet_controller : bullet_list) {
+			bullet_controller->render();
+		}
 	}
-	BulletController* BulletService::getBulletController() {
-		return bullet_controller;
+	
+	void BulletService::destroyBullet(BulletController* bullet_controller) {
+		dynamic_cast<ICollider*>(bullet_controller)->disableCollision();
+		bullet_list.erase(std::remove(bullet_list.begin(), bullet_list.end(), bullet_controller), bullet_list.end());
 	}
-
-	/*void PlayerService::increaseScore(int val)
-	{
-		player_controller->increaseScore(val);
-	}
-
-	void PlayerService::decreaseScore(int val)
-	{
-		player_controller->decreaseScore(val);
-	}
-
-	void PlayerService::increaseEnemiesKilled(int val)
-	{
-		player_controller->increaseEnemiesKilled(val);
-	}
-
-	void PlayerService::enableShield()
-	{
-		player_controller->enableShield();
-	}
-
-	void PlayerService::enableRapidFire()
-	{
-		player_controller->enableRapidFire();
-	}
-
-	void PlayerService::enableTrippleLaser()
-	{
-		player_controller->enableTrippleLaser();
-	}*/
 
 	void BulletService::reset()
 	{
